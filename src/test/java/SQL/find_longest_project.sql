@@ -2,6 +2,6 @@ SELECT CONCAT('Project ', id) as name, DATEDIFF('MONTH', start_date,finish_date)
 FROM project
 GROUP BY id
 HAVING  month_count =  (
-SELECT MIN(DATEDIFF('MONTH', start_date,finish_date))
+SELECT MAX(DATEDIFF('MONTH', start_date,finish_date))
 FROM project
 );
