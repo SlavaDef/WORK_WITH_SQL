@@ -1,0 +1,17 @@
+2023-05-14 23:31:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "[*]SQL/init_db.sql"; ожидалось "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"
+Syntax error in SQL statement "[*]SQL/init_db.sql"; expected "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
+SQL/init_db.sql [42001-214]
+2023-05-15 12:04:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "WORKER" уже существует
+Table "WORKER" already exists; SQL statement:
+CREATE TABLE worker(
+id IDENTITY(1,1) PRIMARY KEY,
+name VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),
+birthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),
+level VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),
+salary INTEGER CHECK (salary >= 100 AND salary <= 100000)) [42101-214]
+2023-05-15 12:09:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "[*]SQL/init_db.sql"; ожидалось "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"
+Syntax error in SQL statement "[*]SQL/init_db.sql"; expected "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
+SQL/init_db.sql [42001-214]
