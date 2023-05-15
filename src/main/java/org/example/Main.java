@@ -1,14 +1,27 @@
 package org.example;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+
+    private static final String INIT_DB_FILE = "src/main/java/SQL/init_db.sql";
+    public static void main(String[] args)  {
+
+
 
         Database database = Database.getInstance();
       //  Connection con = Database.getInstance().getConnection();
-        database.executeUpdate("CREATE TABLE test_table (name VARCHAR(100))");
+        String sql = null;
+        try {
+            sql = Files.readString(Path.of(INIT_DB_FILE));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        database.executeUpdate(sql);
 
     }
 }

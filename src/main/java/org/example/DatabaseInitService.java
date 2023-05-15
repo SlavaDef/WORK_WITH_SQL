@@ -1,13 +1,12 @@
 package org.example;
 
-import java.sql.Connection;
-
 public class DatabaseInitService {
+
+    private static final String INIT_DB_FILE = "src/main/java/SQL/init_db.sql";
 
     public static void main(String[] args) {
 
-        Database db = Database.getInstance();
-        db.executeUpdate("SQL/init_db.sql");
+        new Utils().readSQL(INIT_DB_FILE);
 
     }
 }

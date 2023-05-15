@@ -2,7 +2,6 @@ package org.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
@@ -12,7 +11,6 @@ public class Database {
     private Connection connection;
 
     private static final Database INSTANCE = new Database();
-
 
    private Database() {
 
@@ -33,14 +31,12 @@ public class Database {
 
     public int executeUpdate(String sql) { // метод для виконання запиту
         try (Statement st = connection.createStatement() ){
-            return st.executeUpdate(sql); // тут повертаеться інт тому в методі повертаємо його
+            return st.executeUpdate(sql);
 
         } catch (Exception e) {
             e.printStackTrace();
 
             return -1;
         }
-
     }
-
 }

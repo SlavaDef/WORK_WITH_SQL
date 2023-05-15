@@ -15,3 +15,96 @@ salary INTEGER CHECK (salary >= 100 AND salary <= 100000)) [42101-214]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "[*]SQL/init_db.sql"; ожидалось "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"
 Syntax error in SQL statement "[*]SQL/init_db.sql"; expected "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
 SQL/init_db.sql [42001-214]
+2023-05-15 13:15:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "CREATE TABLE worker(\000aid IDENTITY(1,1) PRIMARY KEY,\000aname VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),\000abirthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),\000alevel VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),\000asalary INTEGER CHECK (salary >= 100 AND salary <= 100000))\000a\000a[*]CREATE TABLE client(\000aid IDENTITY PRIMARY KEY,\000aname VARCHAR(100) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ))\000a\000aCREATE TABLE project (\000aid IDENTITY PRIMARY KEY,\000aclient_id BIGINT,\000astart_date DATE,\000afinish_date DATE)\000a\000aCREATE TABLE project_worker(\000a    project_id BIGINT NOT NULL,\000a    worker_id BIGINT NOT NULL,\000a    FOREIGN KEY(project_id) REFERENCES project(id),\000a    FOREIGN KEY (worker_id) REFERENCES worker(id),\000a    PRIMARY KEY (project_id, worker_id))"
+Syntax error in SQL statement "CREATE TABLE worker(\000aid IDENTITY(1,1) PRIMARY KEY,\000aname VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),\000abirthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),\000alevel VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),\000asalary INTEGER CHECK (salary >= 100 AND salary <= 100000))\000a\000a[*]CREATE TABLE client(\000aid IDENTITY PRIMARY KEY,\000aname VARCHAR(100) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ))\000a\000aCREATE TABLE project (\000aid IDENTITY PRIMARY KEY,\000aclient_id BIGINT,\000astart_date DATE,\000afinish_date DATE)\000a\000aCREATE TABLE project_worker(\000a    project_id BIGINT NOT NULL,\000a    worker_id BIGINT NOT NULL,\000a    FOREIGN KEY(project_id) REFERENCES project(id),\000a    FOREIGN KEY (worker_id) REFERENCES worker(id),\000a    PRIMARY KEY (project_id, worker_id))"; SQL statement:
+CREATE TABLE worker(
+id IDENTITY(1,1) PRIMARY KEY,
+name VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),
+birthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),
+level VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),
+salary INTEGER CHECK (salary >= 100 AND salary <= 100000))
+
+CREATE TABLE client(
+id IDENTITY PRIMARY KEY,
+name VARCHAR(100) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ))
+
+CREATE TABLE project (
+id IDENTITY PRIMARY KEY,
+client_id BIGINT,
+start_date DATE,
+finish_date DATE)
+
+CREATE TABLE project_worker(
+    project_id BIGINT NOT NULL,
+    worker_id BIGINT NOT NULL,
+    FOREIGN KEY(project_id) REFERENCES project(id),
+    FOREIGN KEY (worker_id) REFERENCES worker(id),
+    PRIMARY KEY (project_id, worker_id)) [42000-214]
+2023-05-15 14:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "WORKER" уже существует
+Table "WORKER" already exists; SQL statement:
+CREATE TABLE worker(
+id IDENTITY(1,1) PRIMARY KEY,
+name VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),
+birthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),
+level VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),
+salary INTEGER CHECK (salary >= 100 AND salary <= 100000)) [42101-214]
+2023-05-15 14:30:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "WORKER" уже существует
+Table "WORKER" already exists; SQL statement:
+CREATE TABLE worker(
+id IDENTITY(1,1) PRIMARY KEY,
+name VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),
+birthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),
+level VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),
+salary INTEGER CHECK (salary >= 100 AND salary <= 100000)) [42101-214]
+2023-05-15 14:41:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Невозможно удалить "WORKER", пока существует зависимый объект "CONSTRAINT_5B"
+Cannot drop "WORKER" because "CONSTRAINT_5B" depends on it; SQL statement:
+DROP TABLE worker [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1103)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1090)
+	at org.h2.server.web.WebThread.process(WebThread.java:188)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-05-15 14:41:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Невозможно удалить "PROJECT", пока существует зависимый объект "CONSTRAINT_5"
+Cannot drop "PROJECT" because "CONSTRAINT_5" depends on it; SQL statement:
+DROP TABLE project [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1103)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1090)
+	at org.h2.server.web.WebThread.process(WebThread.java:188)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-05-15 16:56:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "WORKER" уже существует
+Table "WORKER" already exists; SQL statement:
+CREATE TABLE worker(
+id IDENTITY(1,1) PRIMARY KEY,
+name VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),
+birthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),
+level VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),
+salary INTEGER CHECK (salary >= 100 AND salary <= 100000)) [42101-214]
