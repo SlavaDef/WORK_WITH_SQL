@@ -154,3 +154,14 @@ FROM worker
 	at org.example.Database.executeUpdate(Database.java:34)
 	at org.example.DatabaseQueryService.maxSalaryWorker(DatabaseQueryService.java:53)
 	at org.example.DatabaseQueryService.main(DatabaseQueryService.java:76)
+2023-05-17 14:51:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Столбец "salary" не найден
+Column "salary" not found [42122-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3518)
+	at org.h2.jdbc.JdbcResultSet.getLong(JdbcResultSet.java:745)
+	at org.example.DatabaseQueryService.maxSalaryWorker(DatabaseQueryService.java:62)
+	at org.example.DatabaseQueryService.main(DatabaseQueryService.java:79)

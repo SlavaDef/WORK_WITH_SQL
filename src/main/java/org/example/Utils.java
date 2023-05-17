@@ -16,5 +16,6 @@ public class Utils {
             throw new RuntimeException(e);
         }
         database.executeUpdate(sql);
+
     }
 }

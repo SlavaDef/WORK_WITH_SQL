@@ -3,6 +3,8 @@ package org.example;
 import SqlRequests.MaxSalaryWorker;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,27 +26,12 @@ public class DatabaseQueryService {
 
     private Database database;
 
-  /*  public void printWorkerId() { // метод виводе всі id FROM worker
-
-        try(Statement st = database.getConnection().createStatement()){
-            try(ResultSet res = st.executeQuery("SELECT id FROM worker")) {
-                while (res.next()){
-                    long id = res.getLong("id");
-                    System.out.println("ID = " + id);
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    } */
-
     public List<MaxSalaryWorker> maxSalaryWorker() throws IOException {
         List<MaxSalaryWorker> list = new ArrayList<>();
         try(Statement st = database.getConnection().createStatement()){
 
-               /* String sql = Files.readString(Path.of("src/main/java/SQL/find_max_salary.sql"));
-              String sql2 = new Utils().readSQL(FIND_LONGEST_PROJECT); */ // ????????
+                String sql3 = Files.readString(Path.of(FIND_LONGEST_PROJECT)); //// ?????
+             // String sql2 = new Utils().readSQL(FIND_LONGEST_PROJECT);  // ????????
             String sql = "SELECT name,salary\n" +
                     "from worker\n" +
                     "GROUP BY name\n" +
@@ -53,14 +40,12 @@ public class DatabaseQueryService {
                     "FROM worker\n" +
                     "); ";
               //database.executeUpdate(sql);
-            try(ResultSet rs = st.executeQuery(sql)){
-                if(rs.next()){
+            try(ResultSet rs = st.executeQuery(sql3)){
+                while (rs.next()){
                     MaxSalaryWorker worker = new MaxSalaryWorker();
                     worker.setName(rs.getString("name"));
                     worker.setSalary(rs.getLong("salary"));
                     list.add(worker);
-                }else {
-                    System.out.println("something wrong");
                 }
             }
         } catch (SQLException e){

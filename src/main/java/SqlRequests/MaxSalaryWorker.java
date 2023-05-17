@@ -5,6 +5,8 @@ public class MaxSalaryWorker {
     private String name;
     private long salary;
 
+    private static final String FIND_LONGEST_PROJECT = "src/main/java/SQL/find_longest_project.sql";
+
     public String getName() {
         return name;
     }
