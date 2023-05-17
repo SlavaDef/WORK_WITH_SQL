@@ -1,9 +1,13 @@
 package org.example;
 
+import SqlRequests.MaxSalaryWorker;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseQueryService {
 
@@ -35,8 +39,8 @@ public class DatabaseQueryService {
         }
     } */
 
-    public String maxSalaryWorker() throws IOException {
-
+    public List<MaxSalaryWorker> maxSalaryWorker() throws IOException {
+        List<MaxSalaryWorker> list = new ArrayList<>();
         try(Statement st = database.getConnection().createStatement()){
 
                /* String sql = Files.readString(Path.of("src/main/java/SQL/find_max_salary.sql"));
@@ -51,9 +55,10 @@ public class DatabaseQueryService {
               //database.executeUpdate(sql);
             try(ResultSet rs = st.executeQuery(sql)){
                 if(rs.next()){
-                    String name = rs.getString("name");
-                    long salary = rs.getLong("salary");
-                    return name+" "+ salary;
+                    MaxSalaryWorker worker = new MaxSalaryWorker();
+                    worker.setName(rs.getString("name"));
+                    worker.setSalary(rs.getLong("salary"));
+                    list.add(worker);
                 }else {
                     System.out.println("something wrong");
                 }
@@ -61,7 +66,7 @@ public class DatabaseQueryService {
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return " ";
+        return list;
     }
 
     public static void main(String[] args) throws IOException {

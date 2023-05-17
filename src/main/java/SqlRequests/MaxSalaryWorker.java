@@ -3,7 +3,7 @@ package SqlRequests;
 public class MaxSalaryWorker {
 
     private String name;
-    private int salary;
+    private long salary;
 
     public String getName() {
         return name;
@@ -13,11 +13,11 @@ public class MaxSalaryWorker {
         this.name = name;
     }
 
-    public int getSalary() {
+    public long getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(long salary) {
         this.salary = salary;
     }
 
