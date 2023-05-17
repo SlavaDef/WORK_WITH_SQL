@@ -108,3 +108,49 @@ name VARCHAR(1000) NOT NULL CHECK(CHAR_LENGTH(name)>=2 ),
 birthday DATE CHECK ((EXTRACT(YEAR FROM birthday)) >= 1900),
 level VARCHAR NOT NULL CHECK(level IN ('Trainee', 'Junior','Middle','Senior')),
 salary INTEGER CHECK (salary >= 100 AND salary <= 100000)) [42101-214]
+2023-05-15 17:13:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Метод не разрешен для запросов. Используйте execute или executeQuery вместо executeUpdate
+Method is not allowed for a query. Use execute or executeQuery instead of executeUpdate; SQL statement:
+SELECT CONCAT('Project ', id) as name, DATEDIFF('MONTH', start_date,finish_date) as month_count
+FROM project
+GROUP BY id
+HAVING  month_count =  (
+SELECT MAX(DATEDIFF('MONTH', start_date,finish_date))
+FROM project
+) [90001-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.Prepared.update(Prepared.java:244)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:143)
+	at org.example.Database.executeUpdate(Database.java:34)
+	at org.example.Utils.readSQL(Utils.java:18)
+	at org.example.DatabaseQueryService.main(DatabaseQueryService.java:9)
+2023-05-17 14:06:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Метод не разрешен для запросов. Используйте execute или executeQuery вместо executeUpdate
+Method is not allowed for a query. Use execute or executeQuery instead of executeUpdate; SQL statement:
+SELECT name,salary
+from worker
+GROUP BY name
+HAVING salary = (
+select MAX(salary)
+FROM worker
+) [90001-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.Prepared.update(Prepared.java:244)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:190)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:143)
+	at org.example.Database.executeUpdate(Database.java:34)
+	at org.example.DatabaseQueryService.maxSalaryWorker(DatabaseQueryService.java:53)
+	at org.example.DatabaseQueryService.main(DatabaseQueryService.java:76)
