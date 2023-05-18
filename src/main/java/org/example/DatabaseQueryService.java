@@ -14,7 +14,6 @@ public class DatabaseQueryService {
     private static final String FIND_LONGEST_PROJECT = "src/main/java/SQL/find_longest_project.sql";
     private static final String FIND_MAX_PROJECTS_CLIENT = "src/main/java/SQL/find_max_projects_client.sql";
     private static final String FIND_YOUNGEST_ELDEST_WORKERS = "src/main/java/SQL/find_youngest_eldest_workers.sql";
-
     private static final String PRINT_PROJECT_PRICES = "src/main/java/SQL/print_project_prices.sql";
 
     public DatabaseQueryService(Database database) { // конструктор приймає Storage як аргумент
