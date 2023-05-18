@@ -3,9 +3,7 @@ package SqlRequests;
 public class MaxSalaryWorker {
 
     private String name;
-    private long salary;
-
-    private static final String FIND_LONGEST_PROJECT = "src/main/java/SQL/find_longest_project.sql";
+    private int salary;
 
     public String getName() {
         return name;
@@ -15,16 +13,16 @@ public class MaxSalaryWorker {
         this.name = name;
     }
 
-    public long getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(long salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
     @Override
     public String toString() {
-        return name +" "+ salary;
+        return "Worker with name "+name +" have salary "+ salary+"ye";
     }
 }

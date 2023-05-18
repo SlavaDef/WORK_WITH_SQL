@@ -6,16 +6,12 @@ import java.nio.file.Path;
 
 public class Utils {
 
-    public void readSQL(String sql){
-
-        Database database = Database.getInstance();
+    public static String readSQL(String filName){
 
         try {
-            sql = Files.readString(Path.of(sql));
+            return Files.readString(Path.of(filName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        database.executeUpdate(sql);
-
     }
 }
