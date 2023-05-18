@@ -12,25 +12,26 @@ public class Database {
 
     private static final Database INSTANCE = new Database();
 
-   private Database() {
+    private Database() {
 
-       try{
-           connection = DriverManager.getConnection(url);
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+        try {
+            connection = DriverManager.getConnection(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
-    public static Database getInstance(){
+
+    public static Database getInstance() {
         return INSTANCE;
     }
 
-    public Connection getConnection(){
+    public Connection getConnection() {
         return connection;
     }
 
     public int executeUpdate(String sql) { // метод для виконання запиту
-        try (Statement st = connection.createStatement() ){
+        try (Statement st = connection.createStatement()) {
             return st.executeUpdate(sql);
 
         } catch (Exception e) {

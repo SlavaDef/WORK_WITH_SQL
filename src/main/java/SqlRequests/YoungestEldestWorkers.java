@@ -32,6 +32,6 @@ public class YoungestEldestWorkers {
 
     @Override
     public String toString() {
-        return name + " is " + type +" born in " + birthday;
+        return name + " is " + type + " born in " + birthday;
     }
 }

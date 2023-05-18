@@ -23,6 +23,6 @@ public class MaxSalaryWorker {
 
     @Override
     public String toString() {
-        return "Worker with name "+name +" have salary "+ salary+"ye";
+        return "Worker with name " + name + " have salary " + salary + "ye";
     }
 }

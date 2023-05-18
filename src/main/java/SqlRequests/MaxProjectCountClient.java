@@ -23,6 +23,6 @@ public class MaxProjectCountClient {
 
     @Override
     public String toString() {
-        return "Client " + name+" have "+ projectCount+ " projects";
+        return "Client " + name + " have " + projectCount + " projects";
     }
 }

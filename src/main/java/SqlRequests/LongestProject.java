@@ -23,6 +23,6 @@ public class LongestProject {
 
     @Override
     public String toString() {
-        return "The longest project is "+ name+ ", his monthcount is " + monthCount+" days";
+        return "The longest project is " + name + ", his monthcount is " + monthCount + " days";
     }
 }
