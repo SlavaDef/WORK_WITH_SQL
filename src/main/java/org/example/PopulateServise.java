@@ -3,9 +3,6 @@ package org.example;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PopulateServise {
 
@@ -21,7 +18,7 @@ public class PopulateServise {
         insertIntoWorker = connection.prepareStatement(
                 "INSERT INTO worker\n" +
                         "(name,birthday,level,salary)\n" +
-                        "VALUES(?,?,?,?");
+                        "VALUES (?,?,?,?)");
         insertIntoClient = connection.prepareStatement(
                 "INSERT INTO client\n" +
                         "(name)\n" +
@@ -30,18 +27,19 @@ public class PopulateServise {
         insertIntoProject = connection.prepareStatement(
                 "INSERT INTO project\n" +
                         "(client_id, start_date,finish_date)\n" +
-                        "VALUES (?,?,?");
+                        "VALUES (?,?,?)");
         insertIntoProjectWorker = connection.prepareStatement(
                 "INSERT INTO project_worker\n" +
                         "(project_id,worker_id)\n" +
-                        "VALUES (?,?");
+                        "VALUES (?,?)");
 
     }
 
-    public  void   insertWorkers() throws SQLException {
-        String[] sql =  Utils.readSQL("src/main/java/SQL/populate_for_worker.sql").split(";");
+    public void insertWorkers() throws SQLException {
+        String[] sql = Utils.readSQL(
+                "src/main/java/SQL/populate_for_worker.sql").split(";");
 
-        for(String temp : sql) {
+        for (String temp : sql) {
             String[] colum = temp.trim().replaceAll("\'", "").split(",");
 
             insertIntoWorker.setString(1, colum[0]);
@@ -50,32 +48,24 @@ public class PopulateServise {
             insertIntoWorker.setInt(4, Integer.parseInt(colum[3]));
             insertIntoWorker.addBatch();
         }
-            insertIntoWorker.executeBatch();
+        insertIntoWorker.executeBatch();
+    }
 
-      //  return false;
+    public void insertIntoClient() throws SQLException {
+        String[] sql = Utils.readSQL(
+                "src/main/java/SQL/populate_for_worker.sql").split(",");
+        for (String colum : sql) {
+            colum.trim().replaceAll("\'", ""); // ? 
+            insertIntoClient.setString(1, colum);
+        }
+        insertIntoClient.executeUpdate();
     }
 
     public static void main(String[] args) throws SQLException {
-      /*  String[] sql =  Utils.readSQL("src/main/java/SQL/populate_for_worker.sql").trim().split(";");
-        for(String b : sql){
-            String[]colum = b.trim().replaceAll("\'", "").split(",");
-            for(String a : colum){
-                System.out.println(colum[0] + " "+ colum[1] + " " + colum[2] + " "+ colum[3]);
-            }
-           // System.out.println(b);
 
-
-        } */
-        // Connection connection;
         PopulateServise populateServise = new PopulateServise(Database.getInstance());
-        populateServise.insertWorkers();
-
-
-
-
-
+       // populateServise.insertWorkers();
+        populateServise.insertIntoClient();
 
     }
-
-
 }
