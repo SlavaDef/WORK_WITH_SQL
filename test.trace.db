@@ -288,3 +288,9 @@ Syntax error in SQL statement "INSERT INTO worker\000a(name,birthday,level,salar
 INSERT INTO worker
 (name,birthday,level,salary)
 VALUES(?,?,?,? [42001-214]
+2023-05-21 23:26:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; ожидалось "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO worker
+(name,birthday,level,salary)
+VALUES(?,?,?,? [42001-214]

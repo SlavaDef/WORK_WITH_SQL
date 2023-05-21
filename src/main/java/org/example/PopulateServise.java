@@ -44,10 +44,10 @@ public class PopulateServise {
         for(String temp : sql) {
             String[] colum = temp.trim().replaceAll("\'", "").split(",");
 
-            insertIntoWorker.setString(1, colum[1]);
-            insertIntoWorker.setString(2, colum[2]);
-            insertIntoWorker.setString(3, colum[3]);
-            insertIntoWorker.setInt(4, Integer.parseInt(colum[4]));
+            insertIntoWorker.setString(1, colum[0]);
+            insertIntoWorker.setString(2, colum[1]);
+            insertIntoWorker.setString(3, colum[2]);
+            insertIntoWorker.setInt(4, Integer.parseInt(colum[3]));
             insertIntoWorker.addBatch();
         }
             insertIntoWorker.executeBatch();
@@ -66,7 +66,7 @@ public class PopulateServise {
 
 
         } */
-        Connection connection;
+        // Connection connection;
         PopulateServise populateServise = new PopulateServise(Database.getInstance());
         populateServise.insertWorkers();
 
