@@ -300,3 +300,14 @@ Syntax error in SQL statement "INSERT INTO project\000a(client_id, start_date,fi
 INSERT INTO project
 (client_id, start_date,finish_date)
 VALUES (?,?,? [42001-214]
+2023-05-22 00:10:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Параметр "#2" не установлен
+Parameter "#2" is not set [90012-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:646)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:75)
+	at org.h2.jdbc.JdbcPreparedStatement.addBatch(JdbcPreparedStatement.java:1358)
+	at org.example.PopulateServise.insertIntoProjectWorker(PopulateServise.java:86)
+	at org.example.PopulateServise.main(PopulateServise.java:97)

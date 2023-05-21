@@ -53,19 +53,48 @@ public class PopulateServise {
 
     public void insertIntoClient() throws SQLException {
         String[] sql = Utils.readSQL(
-                "src/main/java/SQL/populate_for_worker.sql").split(",");
+                "src/main/java/SQL/populate_for_client.sql").split(",");
         for (String colum : sql) {
-            colum.trim().replaceAll("\'", ""); // ? 
+            colum.trim().replaceAll("\'", ""); // ?
             insertIntoClient.setString(1, colum);
         }
         insertIntoClient.executeUpdate();
+    }
+
+    public void insertIntoProject() throws SQLException {
+        String[] sql = Utils.readSQL(
+                "src/main/java/SQL/populate_for_project.sql").split(";");
+        for (String temp : sql) {
+            String[] colum = temp.trim().replaceAll("\'", "").split(",");
+
+            insertIntoProject.setInt(1, Integer.parseInt(colum[0]));
+            insertIntoProject.setString(2, colum[1]);
+            insertIntoProject.setString(3, colum[2]);
+            insertIntoProject.addBatch();
+        }
+        insertIntoProject.executeBatch();
+    }
+
+    public void insertIntoProjectWorker() throws SQLException {
+        String[] sql = Utils.readSQL(
+                "src/main/java/SQL/populate_for_project_worker.sql").split(";");
+        for (String temp : sql) {
+            String[] colum = temp.trim().split(",");
+
+            insertIntoProjectWorker.setInt(1,Integer.parseInt(colum[0]));
+            insertIntoProjectWorker.setInt(2,Integer.parseInt(colum[1]));
+            insertIntoProjectWorker.addBatch();
+        }
+        insertIntoProjectWorker.executeBatch();
     }
 
     public static void main(String[] args) throws SQLException {
 
         PopulateServise populateServise = new PopulateServise(Database.getInstance());
        // populateServise.insertWorkers();
-        populateServise.insertIntoClient();
+       // populateServise.insertIntoClient();
+       // populateServise.insertIntoProject();
+        populateServise.insertIntoProjectWorker();
 
     }
 }
