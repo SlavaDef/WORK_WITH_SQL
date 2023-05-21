@@ -264,3 +264,27 @@ Column "monthCount" not found [42122-214]
 	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:337)
 	at org.example.DatabaseQueryService.findLongestProject(DatabaseQueryService.java:31)
 	at org.example.DatabaseQueryService.main(DatabaseQueryService.java:65)
+2023-05-21 22:42:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; ожидалось "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO worker
+(name,birthday,level,salary)
+VALUES(?,?,?,? [42001-214]
+2023-05-21 22:45:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; ожидалось "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO worker
+(name,birthday,level,salary)
+VALUES(?,?,?,? [42001-214]
+2023-05-21 22:59:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; ожидалось "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO worker
+(name,birthday,level,salary)
+VALUES(?,?,?,? [42001-214]
+2023-05-21 23:12:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; ожидалось "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"
+Syntax error in SQL statement "INSERT INTO worker\000a(name,birthday,level,salary)\000aVALUES(?,?,?,?[*]"; expected "[, ::, AT, FORMAT, *, /, %, +, -, ||, NOT, IS, ILIKE, REGEXP, AND, OR, ,, )"; SQL statement:
+INSERT INTO worker
+(name,birthday,level,salary)
+VALUES(?,?,?,? [42001-214]
